@@ -1,8 +1,9 @@
+import os
 from dotenv import load_dotenv
-# Load environment variables FIRST, before other imports use them
 load_dotenv()
 
 from recommender import TVShowRecommender
+import studio
 
 def get_verified_titles(recommender):
     """
@@ -44,15 +45,25 @@ def main():
         # Step 1 & 2: Get Validated Input
         user_titles = get_verified_titles(recommender)
         
-        # Step 3: Transition
+        # Step 3: Recommendations
         print("\nGreat! Generating recommendations now...")
-        
-        # Step 4: Logic Implementation
         recommendations = recommender.recommend_shows(user_titles)
         
+        # Step 4: Display Recommendations
         print("\nHere are the tv shows that I think you would love:")
+        rec_titles_only = []
         for title, score in recommendations:
             print(f"{title} ({score}%)")
+            rec_titles_only.append(title)
+            
+        # Step 5: Creative Studio (Generative AI)
+        print("\n" + "="*40)
+        print("I have also created just for you two shows which I think you would love.")
+        
+        studio.generate_fictional_show(user_titles, "the input shows that you gave me")
+        studio.generate_fictional_show(rec_titles_only[:3], "the shows that I recommended for you")
+        
+        print("\nHere are also the 2 tv show ads. Hope you like them!")
             
     except Exception as e:
         print(f"An unexpected error occurred: {e}")

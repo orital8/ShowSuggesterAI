@@ -4,7 +4,5 @@ thefuzz
 python-Levenshtein
 python-dotenv
 numpy
-matplotlib
-plotly
-scipy
-scikit-learn
+google-genai
+pillow

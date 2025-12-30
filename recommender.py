@@ -2,7 +2,6 @@ import pickle
 import os
 import numpy as np
 from thefuzz import process
-# Import the math function from your simplified utils file
 from embeddings_utils import cosine_similarity
 
 class TVShowRecommender:
@@ -65,10 +64,8 @@ class TVShowRecommender:
         # 3. Sort by similarity (Highest first)
         scores.sort(key=lambda x: x[1], reverse=True)
         
-        # Select top N
         top_matches = scores[:count]
         
-        # Format the output with percentage
         recommendations = []
         for title, sim_score in top_matches:
             percent = int(sim_score * 100)
